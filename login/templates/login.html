@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/createUser" method="post">
+        {% csrf_token %}
+        <label for="Username">Username</label>
+        <input type="text" name="username">
+        <label for="email">Email</label>
+        <input type="email" name="email">
+        <label for="password" >password</label>
+        <input type="password" name="password">
+        <label for="confirmPW">confirm password</label>
+        <input type="password" name="confirmPW">
+        <label for="Birthday">Birthday</label>
+        <input type="date" name="Bday">
+        <button type="submit">Register</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/loginConfirm" method="post">
+        {% csrf_token %}
+        <label for="username">Username/Email</label>
+        <input type="text" name="username">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <button type="submit">login</button>
+    </form>
+</body>
+</html>
